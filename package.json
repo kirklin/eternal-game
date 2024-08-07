@@ -1,0 +1,56 @@
+{
+  "name": "eternal-game",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.4.0",
+  "description": "_description_",
+  "author": "Kirk Lin <https://github.com/kirklin>",
+  "license": "MIT",
+  "funding": "https://www.buymeacoffee.com/linkirk",
+  "homepage": "https://github.com/kirklin/eternal-game#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirklin/eternal-game.git"
+  },
+  "bugs": "https://github.com/kirklin/eternal-game/issues",
+  "keywords": [],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "nr build",
+    "release": "bumpp",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "up": "taze major -r -w -I"
+  },
+  "dependencies": {
+    "@kirklin/reset-css": "^0.0.6",
+    "kkplay": "^0.0.0"
+  },
+  "devDependencies": {
+    "@antfu/ni": "^0.21.12",
+    "@kirklin/eslint-config": "^2.5.0",
+    "@types/node": "^20.14.9",
+    "bumpp": "^9.4.1",
+    "eslint": "^9.6.0",
+    "lint-staged": "^15.2.7",
+    "pnpm": "^9.4.0",
+    "rimraf": "^5.0.7",
+    "simple-git-hooks": "^2.11.1",
+    "taze": "^0.13.9",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2",
+    "vitest": "^1.6.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}
