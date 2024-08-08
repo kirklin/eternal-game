@@ -26,54 +26,71 @@ export class LevelGenerator {
       "                           ====     > >                    === @",
       "===================================================================",
     ];
-
+    // const level = [
+    //   "                                                                        ",
+    //   "                            $$                                         ",
+    //   "                      ----      ----                           $$      ",
+    //   "            $$    ---                ---                   ----        ",
+    //   "        ----   --                        ---            ----            ",
+    //   "  $$  --     --                             -----    ----          $$   ",
+    //   "    --    --                                     ----            --   # ",
+    //   " --    --          ^^    >    %%    >    ^^                   --      %%",
+    //   "-    --        ----  ----    --  ----    --  ----          --        -- ",
+    //   "   --        --                                   ----    --        --   ",
+    //   " --        --                                         ----        --     ",
+    //   "-        --                                               ------  @      ",
+    //   "========================================================================",
+    //   "                                                                        "
+    // ]
     return level;
   }
 
   public async generateLevelWithAI(difficulty: number): Promise<string[]> {
     try {
-      const apiKey = import.meta.env.VITE_DIFY_API_KEY; // 从环境变量获取API密钥
+      const apiKey = import.meta.env.VITE_DIFY_API_KEY; // 从环境变量获取 API 密钥
       if (!apiKey) {
-        throw new Error("DIFY_API_KEY not found in environment variables");
+        throw new Error("API 密钥未在环境变量中找到");
       }
-      const response = await axios.post("https://api.dify.ai/v1/completion-messages", {
+
+      const apiEndpoint = "https://api.dify.ai/v1/workflows/run";
+      const apiRequestData = {
         inputs: {
-          query: `Generate a platform game level with difficulty ${difficulty}.`,
+          query: `Generate a platform game level with difficulty ${difficulty * 10}.`,
         },
         response_mode: "blocking",
-        user: "game_user", // 可以根据需要修改用户标识
-      }, {
+        user: "game_user", // 可根据需要修改用户标识
+      };
+      const apiRequestConfig = {
         headers: {
           "Authorization": `Bearer ${apiKey}`,
           "Content-Type": "application/json",
         },
-        timeout: 30000, // 设置30秒超时
-      });
-      // 检查响应数据
-      if (!response.data || !response.data.answer) {
-        throw new Error("Invalid response from API");
+        timeout: 30000, // 设置 30 秒超时
+      };
+
+      const response = await axios.post(apiEndpoint, apiRequestData, apiRequestConfig);
+
+      if (!response.data || !response.data.data) {
+        throw new Error("API 返回的响应无效");
       }
-      // 假设API返回的数据结构中包含生成的关卡
-      // 解析 answer 字段中的 JSON 字符串
-      let parsedAnswer;
+
+      let parsedResponse;
       try {
-        parsedAnswer = JSON.parse(response.data.answer);
+        parsedResponse = JSON.parse(response.data.data.outputs.text);
       } catch (parseError) {
-        console.error("Error parsing API response:", parseError);
-        throw new Error("Failed to parse API response");
+        console.error("解析 API 响应时出错:", parseError);
+        throw new Error("解析 API 响应失败");
       }
 
-      if (!parsedAnswer || !Array.isArray(parsedAnswer.level)) {
-        throw new Error("Invalid level data in API response");
+      if (!parsedResponse || !Array.isArray(parsedResponse.level)) {
+        throw new Error("API 响应中的关卡数据无效");
       }
-      // 获取生成的关卡
-      const generatedLevel = parsedAnswer.level;
 
+      const generatedLevel = parsedResponse.level;
       console.log(generatedLevel);
       return generatedLevel;
-      // return this.generateLevel(difficulty);
     } catch (error) {
-      console.error("Error generating level with AI:", error);
+      console.error("使用 AI 生成关卡时出错:", error);
       return this.generateLevel(difficulty);
     }
   }
