@@ -20,6 +20,7 @@ export default defineConfig({
     __DEV__: isDev,
     __NAME__: JSON.stringify(packageJson.name),
   },
+  publicDir: `${resolve(__dirname, "src")}/assets`,
   build: {
     target: "es2015",
     minify: "terser",
