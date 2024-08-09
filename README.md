@@ -11,6 +11,8 @@ Eternal Game 是一个结合大模型技术的智能游戏开发平台。通过�
 
 [KKPLAY](https://github.com/kirklin/kkplay) 是一个基于 Kaboom.js 的 JavaScript 库，致力于让游戏开发变得快速且有趣。我们对 Kaboom.js 进行了扩展和优化，添加了更多现代化功能，使游戏开发更加便捷和智能。特别是，在 Kaboom.js 暂停维护的背景下，我们通过 KKPLAY 继续保持其简洁易用的传统，同时引入了 AIGC 技术，使游戏内容更加丰富和创意无限。
 
+[boot-ts](https://github.com/kirklin/boot-ts) 是一个 TypeScript 快速开发模板
+
 ## 安装和使用
 
 1. 访问 `dify` 文件夹下的 `yml` 文件。这个是 Dify 的 DSL。可以导入 Dify 平台。导入之后拿到 API 密钥。
