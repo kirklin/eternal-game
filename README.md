@@ -3,9 +3,13 @@
 **简介**:
 Eternal Game 是一个结合大模型技术的智能游戏开发平台。通过与大语言模型进行互动聊天，该引擎能够无限生成独特的游戏关卡，使游戏开发变得更加快速、有趣和富有创意。
 
-KKPLAY 是一个基于 Kaboom.js 的 JavaScript 库，致力于让游戏开发变得快速且有趣。我们对 Kaboom.js 进行了扩展和优化，添加了更多现代化功能，使游戏开发更加便捷和智能。特别是，在 Kaboom.js 暂停维护的背景下，我们通过 KKPLAY 继续保持其简洁易用的传统，同时引入了 AIGC 技术，使游戏内容更加丰富和创意无限。
-
 ![intro](README.assets/intro.png)
+
+## 技术栈
+
+[RO-SCIRAW](https://github.com/kirklin/RO-SCIRAW) 是由Kirk Lin开创的先进提示词工程框架，旨在优化与大型语言模型(LLMs)的交互。这个框架提供了一种系统化方法来构建高效、精确的提示词(prompts)，显著提高AI输出质量和一致性。
+
+[KKPLAY](https://github.com/kirklin/kkplay) 是一个基于 Kaboom.js 的 JavaScript 库，致力于让游戏开发变得快速且有趣。我们对 Kaboom.js 进行了扩展和优化，添加了更多现代化功能，使游戏开发更加便捷和智能。特别是，在 Kaboom.js 暂停维护的背景下，我们通过 KKPLAY 继续保持其简洁易用的传统，同时引入了 AIGC 技术，使游戏内容更加丰富和创意无限。
 
 ## 安装和使用
 
